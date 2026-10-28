@@ -202,8 +202,13 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
                 <span className="text-xs font-bold tracking-wider uppercase text-apple-800 bg-apple-100 px-2 py-0.5 rounded-md font-mono">
                   Вердикт Ньютон AI
                 </span>
-                <span className="text-[11px] font-mono text-gray-400">
-                  {recommendation.source === 'gemini' ? '⚡ Gemini 3.8 Flash' : '🧠 Smart Fallback Core'}
+                <span className={`text-[11px] font-mono px-2 py-0.5 rounded-full flex items-center gap-1.5 ${
+                  recommendation.source === 'gemini' 
+                    ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold' 
+                    : 'bg-gray-100 text-gray-500'
+                }`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${recommendation.source === 'gemini' ? 'bg-emerald-500 animate-pulse' : 'bg-gray-400'}`} />
+                  <span>{recommendation.source === 'gemini' ? 'Live Gemini 3.8 Flash' : 'Offline Smart Core'}</span>
                 </span>
               </div>
               <p className="text-sm sm:text-base text-gray-800 font-medium leading-relaxed">
