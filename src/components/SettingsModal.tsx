@@ -56,21 +56,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fadeIn"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg bg-white rounded-28 p-6 sm:p-7 shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto animate-scaleUp"
+        className="relative w-full max-w-lg bg-white rounded-28 p-5 sm:p-7 shadow-2xl border border-gray-100 max-h-[92vh] overflow-y-auto animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-5">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-12 bg-black text-apple-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-black text-apple-400 flex items-center justify-center text-sm">
               ⚙️
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900">Параметры интеграций</h3>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900">Параметры интеграций</h3>
               <p className="text-xs text-gray-500">Google Gemini & Supabase Database</p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="AQ.Ab8RN6I..."
-              className="w-full px-3.5 py-2.5 rounded-16 bg-[#F5F5F7] border border-gray-200 text-xs sm:text-sm font-mono focus:outline-none focus:ring-2 focus:ring-apple-500"
+              className="w-full px-4 py-2.5 rounded-full bg-[#F5F5F7] border border-gray-200 text-xs sm:text-sm font-mono focus:outline-none focus:ring-2 focus:ring-apple-500"
             />
           </div>
           <p className="text-[11px] text-gray-400 leading-tight">
@@ -119,7 +119,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <Database className="w-3.5 h-3.5 text-emerald-600" />
               <span>Подключение к Supabase</span>
             </label>
-            <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md font-mono">
+            <span className="text-[10px] bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-full font-mono">
               Опционально
             </span>
           </div>
@@ -131,7 +131,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               value={supabaseUrl}
               onChange={(e) => setSupabaseUrl(e.target.value)}
               placeholder="https://xyzcompany.supabase.co"
-              className="w-full px-3.5 py-2 rounded-14 bg-[#F5F5F7] border border-gray-200 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-apple-500"
+              className="w-full px-4 py-2 rounded-full bg-[#F5F5F7] border border-gray-200 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-apple-500"
             />
           </div>
 
@@ -142,7 +142,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               value={supabaseAnonKey}
               onChange={(e) => setSupabaseAnonKey(e.target.value)}
               placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-              className="w-full px-3.5 py-2 rounded-14 bg-[#F5F5F7] border border-gray-200 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-apple-500"
+              className="w-full px-4 py-2 rounded-full bg-[#F5F5F7] border border-gray-200 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-apple-500"
             />
           </div>
 
@@ -151,7 +151,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               type="button"
               onClick={handleTestSupabase}
               disabled={testingSupabase || !supabaseUrl}
-              className="px-3 py-1.5 rounded-12 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-medium flex items-center gap-1.5 transition-all disabled:opacity-40"
+              className="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-medium flex items-center gap-1.5 transition-all disabled:opacity-40 active:scale-95"
             >
               {testingSupabase ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Database className="w-3 h-3" />}
               <span>Проверить связь</span>
@@ -164,7 +164,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
 
           {supabaseStatus && (
-            <div className="p-2.5 rounded-12 bg-gray-50 border border-gray-200 text-xs text-gray-700 font-mono">
+            <div className="p-3 rounded-20 bg-gray-50 border border-gray-200 text-xs text-gray-700 font-mono">
               {supabaseStatus}
             </div>
           )}
@@ -174,13 +174,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-gray-100">
           <button
             onClick={onClose}
-            className="px-4 py-2.5 rounded-16 text-gray-600 hover:bg-gray-100 text-xs font-semibold"
+            className="px-4 py-2.5 rounded-full text-gray-600 hover:bg-gray-100 text-xs font-semibold"
           >
             Отмена
           </button>
           <button
             onClick={handleSave}
-            className={`px-5 py-2.5 rounded-16 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-95 ${
+            className={`px-6 py-2.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-95 ${
               savedSuccess
                 ? 'bg-emerald-600 text-white'
                 : 'bg-apple-500 hover:bg-apple-400 text-black shadow-glow-apple'

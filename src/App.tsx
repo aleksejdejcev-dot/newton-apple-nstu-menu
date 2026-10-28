@@ -108,19 +108,15 @@ export const App: React.FC = () => {
   // Filtered dishes
   const filteredDishes = useMemo(() => {
     return dishes.filter((dish) => {
-      // Category filter
       if (selectedCategory !== 'Все' && dish.category !== selectedCategory) {
         return false;
       }
-      // High protein (>= 15g)
       if (highProteinOnly && dish.proteins < 15) {
         return false;
       }
-      // Under 200 kcal
       if (under200KcalOnly && dish.calories > 200) {
         return false;
       }
-      // Search text
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const matchesName = dish.name.toLowerCase().includes(q);
@@ -151,30 +147,30 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-28 md:pb-16">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3.5 sm:px-6 lg:px-8 py-5 sm:py-8 pb-28 md:pb-16">
         
         {/* Hero Banner / Intro */}
-        <section className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200/70 pb-6">
+        <section className="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200/70 pb-5 sm:pb-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-apple-100 text-apple-900 text-xs font-bold mb-3 border border-apple-300/40">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-apple-100 text-apple-900 text-[11px] sm:text-xs font-bold mb-2.5 border border-apple-300/40">
               <span>🍏</span>
               <span>НГТУ • Сибирский инженерный стандарт качества</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A]">
+            <h1 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0F172A] leading-tight">
               Студенческая столовая «Под яблоком Ньютона»
             </h1>
-            <p className="mt-1.5 text-sm sm:text-base text-gray-500 max-w-2xl font-normal leading-relaxed">
+            <p className="mt-1.5 text-xs sm:text-base text-gray-500 max-w-2xl font-normal leading-relaxed">
               Питание с физической точностью: сбалансированное меню, прозрачный состав и мгновенный ИИ-расчет КБЖУ для продуктивной учебы.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-600 font-medium">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] sm:text-xs text-gray-600 font-medium">
             <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-2xs">
-              <Clock className="w-3.5 h-3.5 text-apple-600" />
+              <Clock className="w-3.5 h-3.5 text-apple-600 flex-shrink-0" />
               <span>Пн–Сб: 08:30 – 17:30</span>
             </span>
             <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-2xs">
-              <MapPin className="w-3.5 h-3.5 text-apple-600" />
+              <MapPin className="w-3.5 h-3.5 text-apple-600 flex-shrink-0" />
               <span>НГТУ, 1-й учебный корпус</span>
             </span>
           </div>
@@ -217,7 +213,7 @@ export const App: React.FC = () => {
 
           {/* Dishes Grid */}
           {filteredDishes.length === 0 ? (
-            <div className="text-center py-16 bg-white rounded-28 border border-gray-200">
+            <div className="text-center py-16 bg-white rounded-28 border border-gray-200 p-6">
               <div className="w-12 h-12 mx-auto rounded-full bg-gray-100 flex items-center justify-center text-xl mb-3">
                 🔍
               </div>
@@ -232,13 +228,13 @@ export const App: React.FC = () => {
                   setUnder200KcalOnly(false);
                   setSearchQuery('');
                 }}
-                className="mt-4 px-4 py-2 rounded-full bg-black text-white text-xs font-semibold hover:bg-gray-800"
+                className="mt-4 px-5 py-2.5 rounded-full bg-black text-white text-xs font-semibold hover:bg-gray-800 transition-all active:scale-95"
               >
                 Сбросить фильтры
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredDishes.map((dish) => (
                 <DishCard
                   key={dish.id}
@@ -256,15 +252,15 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white py-8 text-xs text-gray-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+      <footer className="border-t border-gray-200 bg-white py-6 sm:py-8 text-xs text-gray-500">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2">
             <span className="font-bold text-gray-900">Столовая «Под яблоком Ньютона»</span>
             <span>•</span>
-            <span>Новосибирский государственный технический университет (НГТУ)</span>
+            <span>НГТУ • NETI</span>
           </div>
-          <div className="flex items-center gap-4 font-mono text-[11px]">
-            <span>Калории переводятся в ускорение ума 🧠</span>
+          <div className="flex items-center gap-3 font-mono text-[11px] text-gray-400">
+            <span>Калории ➔ Ускорение ума 🧠</span>
             <span>•</span>
             <span className="text-apple-700 font-bold">F = m · a</span>
           </div>

@@ -76,18 +76,18 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
         onClick={onClose}
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
           
           {/* Header */}
-          <div className="p-5 sm:p-6 border-b border-gray-100 flex items-center justify-between">
+          <div className="p-4 sm:p-6 border-b border-gray-100 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-16 bg-[#0F172A] flex items-center justify-center text-apple-400">
-                <ShoppingBag className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-full bg-[#0F172A] flex items-center justify-center text-apple-400">
+                <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Мой студенческий поднос</h2>
-                <p className="text-xs text-gray-400 font-mono">
+                <h2 className="text-base sm:text-lg font-bold text-gray-900">Мой студенческий поднос</h2>
+                <p className="text-[11px] sm:text-xs text-gray-400 font-mono">
                   {totalItems} {totalItems === 1 ? 'позиция' : totalItems > 1 && totalItems < 5 ? 'позиции' : 'позиций'}
                 </p>
               </div>
@@ -113,10 +113,10 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
           </div>
 
           {/* Items List */}
-          <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-3.5">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3">
             {items.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center p-6 text-gray-400">
-                <div className="w-16 h-16 rounded-24 bg-[#F5F5F7] flex items-center justify-center text-3xl mb-3">
+                <div className="w-16 h-16 rounded-full bg-[#F5F5F7] flex items-center justify-center text-3xl mb-3">
                   🍽️
                 </div>
                 <h3 className="font-bold text-gray-700 text-base mb-1">Поднос пуст</h3>
@@ -133,7 +133,7 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
                   <img
                     src={dish.image}
                     alt={dish.name}
-                    className="w-16 h-16 rounded-16 object-cover flex-shrink-0"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-16 object-cover flex-shrink-0"
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="text-xs sm:text-sm font-bold text-gray-900 truncate">
@@ -150,10 +150,10 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
                   </div>
 
                   {/* Quantity Controls */}
-                  <div className="flex items-center gap-1.5 bg-white border border-gray-200 p-1 rounded-14 shadow-2xs">
+                  <div className="flex items-center gap-1 bg-white border border-gray-200 p-1 rounded-full shadow-2xs">
                     <button
                       onClick={() => onRemoveFromCart(dish.id)}
-                      className="w-6 h-6 rounded-10 bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 active:scale-90 transition-all"
+                      className="w-6 h-6 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 active:scale-90 transition-all"
                     >
                       <Minus className="w-3 h-3" />
                     </button>
@@ -162,7 +162,7 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
                     </span>
                     <button
                       onClick={() => onAddToCart(dish)}
-                      className="w-6 h-6 rounded-10 bg-apple-500 hover:bg-apple-400 text-black flex items-center justify-center font-bold active:scale-90 transition-all"
+                      className="w-6 h-6 rounded-full bg-apple-500 hover:bg-apple-400 text-black flex items-center justify-center font-bold active:scale-90 transition-all"
                     >
                       <Plus className="w-3 h-3" />
                     </button>
@@ -174,10 +174,10 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
 
           {/* Footer & Calculations */}
           {items.length > 0 && (
-            <div className="p-5 sm:p-6 bg-gray-50 border-t border-gray-100 space-y-4">
+            <div className="p-4 sm:p-6 bg-gray-50 border-t border-gray-100 space-y-3.5 flex-shrink-0">
               
               {/* Macro Progress Bar */}
-              <div className="bg-white p-3.5 rounded-20 border border-gray-200/80 shadow-2xs">
+              <div className="bg-white p-3 sm:p-3.5 rounded-24 border border-gray-200/80 shadow-2xs">
                 <div className="flex items-center justify-between text-xs font-semibold mb-2">
                   <span className="text-gray-700">Баланс нутриентов обеда:</span>
                   <div className="flex items-center gap-1 text-amber-600">
@@ -192,7 +192,7 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
                   <div style={{ width: `${cPct}%` }} className="bg-blue-400" title={`Углеводы: ${cPct}%`} />
                 </div>
 
-                <div className="flex justify-between text-[11px] font-mono text-gray-600 pt-1">
+                <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-gray-600 pt-1">
                   <span>Б: <strong className="text-purple-700">{totalProteins.toFixed(1)}г</strong> ({pPct}%)</span>
                   <span>Ж: <strong className="text-amber-700">{totalFats.toFixed(1)}г</strong> ({fPct}%)</span>
                   <span>У: <strong className="text-blue-700">{totalCarbs.toFixed(1)}г</strong> ({cPct}%)</span>
@@ -201,14 +201,14 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
 
               {/* Total & Action Buttons */}
               <div className="flex items-center justify-between pt-1">
-                <span className="text-sm font-semibold text-gray-500">К оплате:</span>
-                <span className="text-3xl font-black text-[#0F172A] tracking-tight">{totalPrice} ₽</span>
+                <span className="text-xs sm:text-sm font-semibold text-gray-500">К оплате:</span>
+                <span className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">{totalPrice} ₽</span>
               </div>
 
               <div className="grid grid-cols-2 gap-2.5">
                 <button
                   onClick={handleCopySummary}
-                  className="py-3 px-3 rounded-16 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs border border-gray-200 flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                  className="py-3 px-3 rounded-full bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs border border-gray-200 flex items-center justify-center gap-1.5 transition-all active:scale-95"
                 >
                   {copied ? (
                     <>
@@ -226,7 +226,7 @@ export const TrayDrawer: React.FC<TrayDrawerProps> = ({
                 <button
                   onClick={handleCheckout}
                   disabled={ordered}
-                  className="py-3 px-4 rounded-16 bg-apple-500 hover:bg-apple-400 text-black font-bold text-xs shadow-apple-sm flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                  className="py-3 px-4 rounded-full bg-apple-500 hover:bg-apple-400 text-black font-bold text-xs shadow-apple-sm flex items-center justify-center gap-1.5 transition-all active:scale-95"
                 >
                   {ordered ? (
                     <>

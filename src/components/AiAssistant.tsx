@@ -67,7 +67,6 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
     onAddComboToCart(recommendation.selectedDishes);
     setAddedSuccess(true);
 
-    // Fire festive confetti
     confetti({
       particleCount: 70,
       spread: 60,
@@ -81,19 +80,19 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
   };
 
   return (
-    <section className="relative overflow-hidden rounded-28 border border-apple-300/40 bg-gradient-to-br from-[#F4FBE8] via-white to-[#ECFDF5] p-5 sm:p-7 md:p-8 shadow-subtle mb-10 transition-all">
+    <section className="relative overflow-hidden rounded-28 border border-apple-300/40 bg-gradient-to-br from-[#F4FBE8] via-white to-[#ECFDF5] p-4 sm:p-7 md:p-8 shadow-subtle mb-10 transition-all">
       {/* Decorative background glow */}
       <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-apple-300/25 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-emerald-200/20 blur-3xl pointer-events-none" />
 
       {/* Header bar of the AI block */}
-      <div className="relative flex flex-wrap items-center justify-between gap-3 mb-4 sm:mb-5">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-20 bg-black text-apple-400 flex items-center justify-center shadow-apple-sm">
+      <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-5">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-black text-apple-400 flex items-center justify-center shadow-apple-sm flex-shrink-0">
             <Sparkles className="w-5 h-5 animate-spin-slow" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#0F172A] flex items-center gap-2">
+            <h2 className="text-lg sm:text-2xl font-black tracking-tight text-[#0F172A] leading-tight">
               ИИ-нутрициолог «Ньютон AI»
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 font-medium">
@@ -102,9 +101,9 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           {/* AI Core badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 text-[#0F172A] text-xs font-mono font-semibold border border-black/10">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 text-[#0F172A] text-[11px] sm:text-xs font-mono font-semibold border border-black/10">
             <span className="w-2 h-2 rounded-full bg-apple-500 animate-pulse"></span>
             <span>AI Core: <strong className="text-apple-700">Gemini 3.8 Flash</strong></span>
           </div>
@@ -133,24 +132,24 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Например: У меня 250 рублей, хочу максимум белка после зала и уложиться в 600 ккал..."
-            className="w-full pl-4 pr-14 sm:pr-32 py-3.5 sm:py-4 rounded-20 bg-white border border-gray-200 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-apple-500 focus:border-transparent shadow-sm transition-all"
+            placeholder="Например: 250 рублей, максимум белка после зала..."
+            className="w-full pl-4 pr-24 sm:pr-32 py-3.5 sm:py-4 rounded-full bg-white border border-gray-200 text-xs sm:text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-apple-500 focus:border-transparent shadow-sm transition-all"
             disabled={loading}
           />
           <button
             type="submit"
             disabled={!query.trim() || loading}
-            className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-16 bg-[#0F172A] hover:bg-black text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-sm active:scale-95"
+            className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#0F172A] hover:bg-black text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-sm active:scale-95"
           >
             {loading ? (
               <>
-                <RefreshCw className="w-4 h-4 animate-spin text-apple-400" />
-                <span className="hidden sm:inline">Считаю...</span>
+                <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin text-apple-400" />
+                <span className="hidden xs:inline">Считаю...</span>
               </>
             ) : (
               <>
                 <Send className="w-3.5 h-3.5 text-apple-400" />
-                <span className="hidden sm:inline">Собрать</span>
+                <span>Собрать</span>
               </>
             )}
           </button>
@@ -158,7 +157,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
       </div>
 
       {/* Quick presets */}
-      <div className="flex flex-wrap items-center gap-2 mb-6">
+      <div className="flex flex-wrap items-center gap-2 mb-4 sm:mb-6">
         <span className="text-xs text-gray-500 font-semibold mr-1">Быстрые цели:</span>
         {presets.map((preset, idx) => {
           const Icon = preset.icon;
@@ -168,9 +167,9 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
               type="button"
               onClick={() => handleGenerate(preset.text)}
               disabled={loading}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white/80 border border-gray-200 shadow-2xs transition-all active:scale-95 disabled:opacity-50 ${preset.color}`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-white/90 border border-gray-200 shadow-2xs transition-all active:scale-95 disabled:opacity-50 ${preset.color}`}
             >
-              <Icon className="w-3.5 h-3.5 text-apple-600" />
+              <Icon className="w-3.5 h-3.5 text-apple-600 flex-shrink-0" />
               <span>{preset.label}</span>
             </button>
           );
@@ -179,7 +178,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
 
       {/* Loading state */}
       {loading && (
-        <div className="bg-white/90 backdrop-blur rounded-20 p-6 border border-apple-200 text-center animate-pulse">
+        <div className="bg-white/95 backdrop-blur rounded-28 p-6 border border-apple-200 text-center animate-pulse shadow-sm">
           <div className="inline-flex p-3 rounded-full bg-apple-100 text-apple-700 mb-3">
             <Sparkles className="w-6 h-6 animate-spin" />
           </div>
@@ -190,19 +189,19 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
 
       {/* AI Recommendation Result Card */}
       {recommendation && !loading && (
-        <div className="relative bg-white rounded-24 border border-apple-300/80 p-5 sm:p-6 shadow-card-hover animate-fadeIn">
+        <div className="relative bg-white rounded-28 border border-apple-300/80 p-4 sm:p-6 shadow-card-hover animate-fadeIn">
           
           {/* Newton Comment */}
-          <div className="flex items-start gap-3.5 mb-5 pb-5 border-b border-gray-100">
+          <div className="flex items-start gap-3 sm:gap-3.5 mb-5 pb-5 border-b border-gray-100">
             <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-apple-500 to-emerald-400 flex-shrink-0 flex items-center justify-center text-white shadow-apple-sm text-lg">
               🍏
             </div>
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-bold tracking-wider uppercase text-apple-800 bg-apple-100 px-2 py-0.5 rounded-md font-mono">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
+                <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase text-apple-800 bg-apple-100 px-2.5 py-0.5 rounded-full font-mono">
                   Вердикт Ньютон AI
                 </span>
-                <span className={`text-[11px] font-mono px-2 py-0.5 rounded-full flex items-center gap-1.5 ${
+                <span className={`text-[10px] sm:text-[11px] font-mono px-2.5 py-0.5 rounded-full flex items-center gap-1.5 ${
                   recommendation.source === 'gemini' 
                     ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold' 
                     : 'bg-gray-100 text-gray-500'
@@ -211,7 +210,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
                   <span>{recommendation.source === 'gemini' ? 'Live Gemini 3.8 Flash' : 'Offline Smart Core'}</span>
                 </span>
               </div>
-              <p className="text-sm sm:text-base text-gray-800 font-medium leading-relaxed">
+              <p className="text-xs sm:text-base text-gray-800 font-medium leading-relaxed">
                 «{recommendation.reasoning}»
               </p>
             </div>
@@ -222,12 +221,12 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
             {recommendation.selectedDishes.map((dish) => (
               <div
                 key={dish.id}
-                className="flex items-center gap-3 p-2.5 rounded-16 bg-[#F5F5F7] border border-gray-100 hover:border-apple-300 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-20 bg-[#F5F5F7] border border-gray-100 hover:border-apple-300 transition-colors"
               >
                 <img
                   src={dish.image}
                   alt={dish.name}
-                  className="w-14 h-14 rounded-12 object-cover flex-shrink-0 shadow-2xs"
+                  className="w-14 h-14 rounded-16 object-cover flex-shrink-0 shadow-2xs"
                 />
                 <div className="min-w-0 flex-1">
                   <h4 className="text-xs sm:text-sm font-semibold text-gray-900 truncate" title={dish.name}>
@@ -238,7 +237,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
                     <span>•</span>
                     <span>{dish.calories} ккал</span>
                   </div>
-                  <div className="text-[11px] text-gray-500 font-mono mt-0.5">
+                  <div className="text-[10px] sm:text-[11px] text-gray-500 font-mono mt-0.5">
                     Б: {dish.proteins}г • Ж: {dish.fats}г • У: {dish.carbs}г
                   </div>
                 </div>
@@ -247,16 +246,16 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
           </div>
 
           {/* Totals & Add to tray button */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-2">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-              <div className="bg-gray-100 px-3 py-1.5 rounded-12 font-bold text-gray-900">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+              <div className="bg-gray-100 px-3.5 py-1.5 rounded-full font-bold text-gray-900">
                 Итого: <span className="text-base text-black font-extrabold">{recommendation.totalPrice} ₽</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-12 bg-amber-50 text-amber-900 border border-amber-200/50 font-medium">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200/50 font-medium">
                 <Flame className="w-3.5 h-3.5 text-amber-600" />
                 <span>{recommendation.totalCalories} ккал</span>
               </div>
-              <div className="flex items-center gap-2 text-xs font-mono text-gray-600 px-2">
+              <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono text-gray-600 px-1">
                 <span>Б: <strong className="text-purple-700">{recommendation.totalProteins}г</strong></span>
                 <span>Ж: <strong className="text-amber-700">{recommendation.totalFats}г</strong></span>
                 <span>У: <strong className="text-blue-700">{recommendation.totalCarbs}г</strong></span>
@@ -266,7 +265,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
             {/* Big 1-Click Button */}
             <button
               onClick={handleApplyCombo}
-              className={`px-5 py-3.5 rounded-20 font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-apple-sm transition-all active:scale-95 ${
+              className={`px-6 py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-2 shadow-apple-sm transition-all active:scale-95 ${
                 addedSuccess
                   ? 'bg-emerald-600 text-white'
                   : 'bg-apple-500 hover:bg-apple-400 text-black shadow-glow-apple'
@@ -274,7 +273,7 @@ export const AiAssistant: React.FC<AiAssistantProps> = ({
             >
               {addedSuccess ? (
                 <>
-                  <Check className="w-5 h-5 text-white" />
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   <span>Сет добавлен на поднос! 🍏</span>
                 </>
               ) : (
