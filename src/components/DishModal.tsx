@@ -27,7 +27,7 @@ export const DishModal: React.FC<DishModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/65 backdrop-blur-sm animate-fadeIn"
       onClick={onClose}
     >
       <div
@@ -37,34 +37,34 @@ export const DishModal: React.FC<DishModalProps> = ({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3.5 right-3.5 z-10 p-2 rounded-full bg-black/50 hover:bg-black text-white backdrop-blur-md transition-colors active:scale-95"
+          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/60 hover:bg-black text-white backdrop-blur-md transition-colors active:scale-95"
           aria-label="Закрыть"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
-        {/* Modal Image */}
-        <div className="relative aspect-[16/9] w-full bg-gray-100 flex-shrink-0">
+        {/* Compact Modal Image Header (does not stretch or dominate screen) */}
+        <div className="relative h-32 xs:h-36 sm:h-44 w-full bg-gray-100 flex-shrink-0 overflow-hidden">
           <img
             src={dish.image}
             alt={dish.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
           
-          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+          <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
             <span className="px-3 py-1 rounded-full bg-apple-500 text-black text-xs font-bold shadow-sm">
               {dish.category}
             </span>
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold">
-              <Scale className="w-3.5 h-3.5" />
+              <Scale className="w-3.5 h-3.5 text-apple-300" />
               <span>{dish.weight} {dish.category === 'Выпечка и напитки' && dish.weight > 200 ? 'мл/г' : 'г'}</span>
             </div>
           </div>
         </div>
 
-        {/* Modal Content */}
-        <div className="p-4 sm:p-7 space-y-4 sm:space-y-5 overflow-y-auto flex-1">
+        {/* Modal Content - Dominant area for clear reading */}
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-5 overflow-y-auto flex-1">
           {/* Title & Calories */}
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -72,21 +72,22 @@ export const DishModal: React.FC<DishModalProps> = ({
                 {dish.name}
               </h3>
               <p className="text-[11px] sm:text-xs text-gray-400 font-mono mt-0.5">
-                ID: neti-canteen-{dish.id} • Свежее приготовление
+                Столовая НГТУ • Свежее приготовление
               </p>
             </div>
-            <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200 text-xs sm:text-sm font-bold flex-shrink-0">
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200 text-xs sm:text-sm font-bold flex-shrink-0">
               <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <span>{dish.calories} ккал</span>
             </div>
           </div>
 
-          {/* Detailed Ingredients */}
-          <div className="bg-[#F5F5F7] p-3.5 sm:p-4 rounded-20 border border-gray-100">
-            <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">
-              Подробный состав
+          {/* Detailed Ingredients - Clear, easily readable box */}
+          <div className="bg-[#F5F5F7] p-4 sm:p-5 rounded-24 border border-gray-100">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5 flex items-center gap-1.5">
+              <span>🌿</span>
+              <span>Подробный состав блюда</span>
             </h4>
-            <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-gray-800 leading-relaxed font-normal">
               {dish.ingredients}
             </p>
           </div>
@@ -94,11 +95,11 @@ export const DishModal: React.FC<DishModalProps> = ({
           {/* Macro Breakdown */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-500">
-                Макронутриенты (БЖУ)
+              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                Макронутриенты (БЖУ на порцию)
               </h4>
               <span className="text-[11px] text-gray-400 font-mono">
-                Энергия: {dish.calories} ккал
+                {dish.calories} ккал
               </span>
             </div>
 
@@ -157,7 +158,7 @@ export const DishModal: React.FC<DishModalProps> = ({
 
             <button
               onClick={() => onAddToCart(dish)}
-              className="px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full bg-apple-500 hover:bg-apple-400 text-black font-bold text-xs sm:text-sm shadow-apple-sm transition-all active:scale-95 flex items-center gap-2"
+              className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-apple-500 hover:bg-apple-400 text-black font-bold text-xs sm:text-sm shadow-apple-sm transition-all active:scale-95 flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
               <span>{cartQuantity > 0 ? 'Еще порцию' : 'На поднос'}</span>
